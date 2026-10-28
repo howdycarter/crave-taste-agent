@@ -2,6 +2,8 @@
 
 **Tell it what you love. It finds where you should eat.**
 
+**Live demo: https://crave-taste-agent.vercel.app** · Qloo Agentic Hackathon entry
+
 Crave is an agentic web demo built on the [Qloo Taste AI API](https://www.qloo.com/) for the
 Qloo Agentic Hackathon. It never asks a single food question. You name cultural favorites —
 artists, films, shows, places — and the agent:
