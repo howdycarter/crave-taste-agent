@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crave — Taste Agent</title>
+<meta name="description" content="Tell Crave the music, films and culture you love. Its agent reads your taste in Qloo's Taste AI graph and tells you where to eat — solo, or where two tastes agree.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="site-head">
+  <div class="brand">Crave<span class="dot">.</span></div>
+  <div class="head-note">A taste agent built on the Qloo Taste AI API</div>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Tell it what you love.<br>It finds where you should eat.</h1>
+    <p class="lede">No food questions. Name the artists, films, shows and places that feel like you — the agent maps your cultural taste onto restaurants, and explains every pick. Bringing someone? Partner Mode finds where two tastes overlap.</p>
+  </section>
+
+  <section class="mode-row" role="tablist" aria-label="Mode">
+    <button id="mode-solo" class="mode-btn active" type="button">Just me</button>
+    <button id="mode-partner" class="mode-btn" type="button">Partner Mode</button>
+  </section>
+
+  <section id="profiles" class="profiles"></section>
+
+  <div class="go-row">
+    <button id="go" class="go-btn" type="button">Find my table</button>
+    <div id="status" class="status" aria-live="polite"></div>
+  </div>
+
+  <section id="results" class="results" hidden>
+    <div id="cluster-line" class="cluster-line"></div>
+    <div id="cards" class="cards"></div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>Powered by the Qloo Taste AI API · Built for the Qloo Agentic Hackathon · Picks are taste-graph affinities, not reviews — the explanation is the interface.</p>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

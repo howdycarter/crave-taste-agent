@@ -1,0 +1,1 @@
+{"description":"Crave — a taste agent. Name the culture you love; Qloo's Taste AI finds where you should eat, and where two tastes agree.","engines":{"node":">=18"},"license":"MIT","name":"crave-taste-agent","private":false,"scripts":{"start":"node server.js"},"version":"1.0.0"}
