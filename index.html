@@ -24,6 +24,22 @@
     <button id="mode-partner" class="mode-btn" type="button">Partner Mode</button>
   </section>
 
+  <section class="city-row">
+    <label for="city">Eating in</label>
+    <select id="city">
+      <option value="">Anywhere — global discovery</option>
+      <option value="Austin">Austin</option>
+      <option value="New York">New York</option>
+      <option value="Los Angeles">Los Angeles</option>
+      <option value="Chicago">Chicago</option>
+      <option value="Houston">Houston</option>
+      <option value="Seattle">Seattle</option>
+      <option value="Miami">Miami</option>
+      <option value="Nashville">Nashville</option>
+    </select>
+    <span class="city-note">Scoped picks come only from that metro — the agent never silently falls back to global.</span>
+  </section>
+
   <section id="profiles" class="profiles"></section>
 
   <div class="go-row">
@@ -33,6 +49,9 @@
 
   <section id="results" class="results" hidden>
     <div id="cluster-line" class="cluster-line"></div>
+    <div id="trace" class="trace" hidden></div>
+    <div id="decision" class="decision" hidden></div>
+    <div id="more-head" class="more-head" hidden>More matches from the same evidence</div>
     <div id="cards" class="cards"></div>
   </section>
 </main>

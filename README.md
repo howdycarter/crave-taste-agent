@@ -18,11 +18,35 @@ artists, films, shows, places — and the agent:
 4. Returns a ranked shortlist where **every pick carries a one-line explanation** derived
    from that cluster ("Your taste clusters around Neapolitan + Neapolitan pizza culture —
    this place answers with…").
-5. **Partner Mode** runs two taste profiles and merges them: identical venues appearing in
-   both profiles' result sets come first (scored by geometric mean of the two affinities);
-   if the venues don't intersect, it falls back to *cuisine-level* common ground — picks from
-   either side whose cuisines sit in both palates' clusters — then alternates each side's
-   strongest remaining pull so neither palate dominates the table.
+5. **Partner Mode is a decision agent** ("Different tastes. One dinner decision."): it reads
+   both taste profiles **in parallel**, scores the shared candidate set for *each person
+   individually* using nominated-candidate scoring (`filter.results.entities`), and ranks
+   by **minimize-the-worse-rank** — the pick that costs the less-happy person the least —
+   so every "fits both" claim carries real evidence for both people.
+
+## The Oct 30 upgrade — receipts, locality, and a real loop
+
+- **Native attribution on every pick.** Requests pass `feature.explainability=true`; Qloo
+  returns per-favorite contribution scores (`query.explainability`), preserved end-to-end
+  and rendered as "Driven by: Inception 52% · Radiohead 48%" for each person. If the API
+  ever returns no breakdown for a pick, the card says "attribution unavailable" instead of
+  inventing numbers.
+- **Location scoping.** A city picker (Austin, New York, Los Angeles, Chicago, Houston,
+  Seattle, Miami, Nashville — each verified against the live API) scopes results via
+  `filter.location.query`. There is no silent global fallback. (Probe note:
+  `signal.location.query` hangs the API; `filter.location.query` is the working shape.)
+- **Strict dining eligibility, unconditionally.** A venue is shown only if it has cuisine
+  evidence of its own *and* every place-category tag it carries is dining-primary.
+  Probe finding: malls borrow cuisine tags from their food tenants — Westfield World
+  Trade Center has cuisine tags *and* a Restaurant category among nine retail ones —
+  so cuisine presence alone cannot exclude them; the all-dining category set can.
+  Eligibility is never relaxed to fill the screen.
+- **A loop that actually adapts.** If the eligible pool is sparse, the agent pulls the
+  next page of results (`offset` — `take` is capped at 50) under the same rules and says
+  so. **Skip** a venue and it is excluded server-side (`filter.exclude.entities`) and the
+  decision is re-ranked from the same evidence. Every line in the on-screen trace states
+  something that actually happened in that run (counts evaluated, repairs, vetoes).
+  Total API calls per decision are budgeted (≤10; typical Partner Mode run: 4).
 
 ## Why this is an agent, not a search box
 

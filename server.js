@@ -29,7 +29,7 @@ const server = http.createServer(async (req, res) => {
       req.on("end", async () => {
         try {
           const body = JSON.parse(raw || "{}");
-          const data = await getPicks(body.profiles);
+          const data = await getPicks(body);
           sendJson(res, 200, data);
         } catch (e) {
           sendJson(res, 502, { error: e.message || "Recommendation failed" });
